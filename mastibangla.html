@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Masti Bangla</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const videoList = [
+        "https://t.me/mastiXbangla/30",
+        "https://t.me/mastiXbangla/23",
+        "https://t.me/mastiXbangla/23",
+        "https://t.me/mastiXbangla/23"
+      ];
+
+      const videoContainer = document.getElementById("videoGallery");
+      const totalVideoCount = document.getElementById("total-video");
+      const paginationContainer = document.getElementById("pagination");
+      let currentPage = 1;
+      const videosPerPage = 5;
+
+      function renderVideos() {
+        videoContainer.innerHTML = "";
+        const startIndex = (currentPage - 1) * videosPerPage;
+        const endIndex = startIndex + videosPerPage;
+        const currentVideos = videoList.slice(startIndex, endIndex);
+
+        currentVideos.forEach((video) => {
+          videoContainer.innerHTML += `
+            <div style="height: 575px;" class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-lg overflow-hidden shadow-lg">
+              <div class="p-2 text-xl font-bold text-yellow-600 bg-white">Masti Bangla 🥵</div>
+              <iframe src="${video.replace('/t.me/', '/telegram.me/') + '?embed=1'}" class="w-full h-screen" allowfullscreen></iframe>
+            </div>`;
+        });
+
+        totalVideoCount.textContent = videoList.length;
+        updatePaginationButtons();
+      }
+
+      function updatePaginationButtons() {
+        const totalPages = Math.ceil(videoList.length / videosPerPage);
+        paginationContainer.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+          const pageButton = document.createElement("button");
+          pageButton.textContent = i;
+          pageButton.classList.add("bg-purple-600", "text-white", "py-2", "px-4", "rounded-md", "mx-1");
+          
+          if (i === currentPage) {
+            pageButton.classList.add("bg-green-500"); // Highlight the current page
+          }
+
+          pageButton.addEventListener("click", () => {
+            currentPage = i;
+            renderVideos();
+          });
+
+          paginationContainer.appendChild(pageButton);
+        }
+      }
+
+      renderVideos();
+    });
+  </script>
+</head>
+
+<body class="bg-gradient-to-r from-blue-900 via-purple-900 to-pink-900 text-white min-h-screen flex flex-col">
+  
+  <header class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-2 shadow-md">
+    <h1 class="text-2xl font-bold text-white text-center" style="font-family: 'Audiowide', cursive;">Masti Bangla</h1>
+  </header>
+
+  <main class="p-4 flex-grow">
+    <div class="text-2xl text-white font-semibold mb-4 text-center">Published Videos: 
+      <span id="total-video" class="text-green-400 font-bold"></span>
+    </div>
+    <div id="videoGallery" class="grid grid-cols-1 gap-6">
+      <!-- Video Gallery Loaded from JavaScript -->
+    </div>
+
+    <div id="pagination" class="flex justify-center mt-4">
+      <!-- Pagination Buttons will be inserted here -->
+    </div>
+  </main>
+
+  <footer class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-4 text-center text-gray-200">
+    <p>&copy; 2025 Masti Bangla. All rights reserved.</p>
+  </footer>
+
+  <script type='text/javascript' src='//pl22142576.profitableratecpm.com/46/59/4c/46594c43bfb3048f34c90a492ed6b1bb.js'></script>
+</body>
+
+</html>
