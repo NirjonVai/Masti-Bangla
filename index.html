@@ -32,8 +32,16 @@
 
         currentVideos.forEach((video) => {
           videoContainer.innerHTML += `
-            <div style="height: 575px;" class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-lg overflow-hidden shadow-lg">
-              <div class="p-2 text-xl font-bold text-yellow-600 bg-white">Masti Bangla 🥵</div>
+            <div style="height: 538px;" class="iframe bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-lg overflow-hidden shadow-lg relative">
+              <div class="title p-2 text-1xl font-bold text-green-700 bg-white absolute top-0 left-0 right-0 mx-auto flex items-center justify-between">
+              <div>
+                  Masti Bangla 💋 🥵
+                <p style="font-size: 10px;" class="text-blue-700">Enjoy Your Life 18+</p>
+              </div>
+              <div>
+              </div>
+                <a href="https://t.me/mastiXbangla"><i class="fa-brands fa-telegram text-blue-700 text-3xl"></i></a>
+              </div>
               <iframe src="${video.replace('/t.me/', '/telegram.me/') + '?embed=1'}" class="w-full h-screen" allowfullscreen></iframe>
             </div>`;
         });
