@@ -9,93 +9,23 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const videoList = [
-        "https://t.me/enjoyXzone/11",
-        "https://t.me/virallink123a/43",
-        "https://t.me/xlsijan/192",
-        "https://t.me/enjoyXzone/5",
-        "https://t.me/mastiXbangla/23",
-        "https://t.me/xlsijan/216",
-        "https://t.me/enjoyXzone/2"
-      ];
-
-      const videoContainer = document.getElementById("videoGallery");
-      const totalVideoCount = document.getElementById("total-video");
-      const paginationContainer = document.getElementById("pagination");
-      let currentPage = 1;
-      const videosPerPage = 3;
-
-      function renderVideos() {
-        videoContainer.innerHTML = "";
-        const startIndex = (currentPage - 1) * videosPerPage;
-        const endIndex = startIndex + videosPerPage;
-        const currentVideos = videoList.slice(startIndex, endIndex);
-
-        currentVideos.forEach((video) => {
-          videoContainer.innerHTML += `
-            <div style="height: 538px;" class="iframe bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-lg overflow-hidden shadow-lg relative">
-              <div class="title p-2 text-1xl font-bold text-green-700 bg-white absolute top-0 left-0 right-0 mx-auto flex items-center justify-between">
-              <div>
-                  Masti Bangla 💋 🥵
-                <p style="font-size: 10px;" class="text-blue-700">Enjoy Your Life 18+</p>
-              </div>
-              <div>
-              </div>
-                <a href="https://t.me/mastiXbangla"><i class="fa-brands fa-telegram text-blue-700 text-3xl"></i></a>
-              </div>
-              <iframe src="${video.replace('/t.me/', '/telegram.me/') + '?embed=1'}" class="w-full h-screen" allowfullscreen></iframe>
-            </div>`;
-        });
-
-        totalVideoCount.textContent = videoList.length;
-        updatePaginationButtons();
-      }
-
-      function updatePaginationButtons() {
-        const totalPages = Math.ceil(videoList.length / videosPerPage);
-        paginationContainer.innerHTML = '';
-
-        for (let i = 1; i <= totalPages; i++) {
-          const pageButton = document.createElement("button");
-          pageButton.textContent = i;
-          pageButton.classList.add("bg-purple-600", "text-white", "py-2", "px-4", "rounded-md", "mx-1");
-          
-          if (i === currentPage) {
-            pageButton.classList.add("bg-green-500"); // Highlight the current page
-          }
-
-          pageButton.addEventListener("click", () => {
-            currentPage = i;
-            renderVideos();
-          });
-
-          paginationContainer.appendChild(pageButton);
-        }
-      }
-
-      renderVideos();
-    });
-  </script>
 </head>
 
 <body class="bg-gradient-to-r from-blue-900 via-purple-900 to-pink-900 text-white min-h-screen flex flex-col">
-  
   <header class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-2 shadow-md">
     <h1 class="text-2xl font-bold text-white text-center" style="font-family: 'Audiowide', cursive;">Masti Bangla</h1>
   </header>
 
-  <main class="p-4 flex-grow">
-    <div class="text-2xl text-white font-semibold mb-4 text-center">Published Videos: 
-      <span id="total-video" class="text-green-400 font-bold"></span>
-    </div>
-    <div id="videoGallery" class="grid grid-cols-1 gap-6">
-      <!-- Video Gallery Loaded from JavaScript -->
-    </div>
+  <main class="p-2 flex-grow">
+    <div id="videoGallery" class="grid grid-cols-2 gap-6 bg-gradient-to-r from-pink-900 via-purple-900 to-blue-900 p-2 rounded-sm"></div>
 
-    <div id="pagination" class="flex justify-center mt-4">
-      <!-- Pagination Buttons will be inserted here -->
+    <div id="selectedVideoContainer" class="hidden bg-gray-900 rounded-sm shadow-md relative flex flex-col justify-center items-center h-64 w-full">
+      <video id="playVideo" class="w-full h-3/4 object-contain mt-8 border border-gray-600" controls></video>
+      <div class="bg-gray-800 bg-opacity-50 w-full flex items-center justify-between px-2 py-1 h-full">
+      <div id="videoTitle" class="text-white font-bold rounded hidden"></div>
+      <div id="videoLink" class="text-blue-400 underline hidden cursor-pointer"><i class="fa-solid fa-link"></i></div>
+      </div>
+      <button id="closeButton" class="absolute top-0.5 right-0 text-white text-2xl bg-black bg-opacity-50 p-1 w-7 h-7 rounded-full hidden flex justify-center items-center">&times;</button>
     </div>
   </main>
 
@@ -103,7 +33,60 @@
     <p>&copy; 2025 Masti Bangla. All rights reserved.</p>
   </footer>
 
-  <script type='text/javascript' src='//pl22142576.profitableratecpm.com/46/59/4c/46594c43bfb3048f34c90a492ed6b1bb.js'></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const videoGallery = document.getElementById("videoGallery");
+      const videoPaths = [
+        {src: "video/1.mp4", title: "Video 1", isNew: true},
+        {src: "video/2.mp4", title: "Video 2"},
+        {src: "video/3.mp4", title: "অস্থির ভিডিও "}
+      ];
+      const selectedVideoContainer = document.getElementById("selectedVideoContainer");
+      const selectedVideoElement = document.getElementById("playVideo");
+      const videoTitle = document.getElementById("videoTitle");
+      const videoLink = document.getElementById("videoLink");
+      const closeButton = document.getElementById("closeButton");
+
+      videoPaths.forEach((video) => {
+        const videoContainer = document.createElement("div");
+        videoContainer.className = "relative bg-gray-900 p-1 rounded-sm shadow-md flex justify-center items-center h-20 w-full";
+
+        const videoElement = document.createElement("video");
+        videoElement.src = video.src;
+        videoElement.controls = false;
+        videoElement.className = "w-full h-full object-contain rounded-md";
+
+        const playButton = document.createElement("button");
+        playButton.className = "absolute text-white text-3xl font-bold bg-black bg-opacity-50 p-2 rounded-full";
+        playButton.innerHTML = "&#9658;";
+
+        playButton.addEventListener("click", function () {
+          selectedVideoElement.src = video.src;
+          videoTitle.textContent = video.title;
+          videoTitle.classList.remove("hidden");
+          videoLink.classList.remove("hidden");
+          videoLink.onclick = () => { navigator.clipboard.writeText(window.location.href + video.src); alert('Video link copied!'); };
+          selectedVideoContainer.classList.remove("hidden");
+          closeButton.classList.remove("hidden");
+          selectedVideoElement.play();
+          videoGallery.classList.add("hidden");
+        });
+
+        videoContainer.appendChild(videoElement);
+        videoContainer.appendChild(playButton);
+        videoGallery.appendChild(videoContainer);
+      });
+
+      closeButton.addEventListener("click", function () {
+        selectedVideoContainer.classList.add("hidden");
+        videoTitle.classList.add("hidden");
+        videoLink.classList.add("hidden");
+        selectedVideoElement.pause();
+        selectedVideoElement.src = "";
+        videoGallery.classList.remove("hidden");
+      });
+    });
+  </script>
 </body>
 
 </html>
