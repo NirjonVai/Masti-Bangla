@@ -22,8 +22,8 @@
     <div id="selectedVideoContainer" class="hidden bg-gray-900 rounded-sm shadow-md relative flex flex-col justify-center items-center h-64 w-full">
       <video id="playVideo" class="w-full h-3/4 object-contain mt-8 border border-gray-600" controls></video>
       <div class="bg-gray-800 bg-opacity-50 w-full flex items-center justify-between px-2 py-1 h-full">
-      <div id="videoTitle" class="text-white font-bold rounded hidden"></div>
-      <div id="videoLink" class="text-blue-400 underline hidden cursor-pointer"><i class="fa-solid fa-link"></i></div>
+        <div id="videoTitle" class="text-white font-bold rounded hidden"></div>
+        <div id="videoLink" class="text-blue-400 underline hidden cursor-pointer"><i class="fa-solid fa-link"></i></div>
       </div>
       <button id="closeButton" class="absolute top-0.5 right-0 text-white text-2xl bg-black bg-opacity-50 p-1 w-7 h-7 rounded-full hidden flex justify-center items-center">&times;</button>
     </div>
@@ -37,8 +37,8 @@
     document.addEventListener("DOMContentLoaded", function () {
       const videoGallery = document.getElementById("videoGallery");
       const videoPaths = [
-        {src: "1.mp4", title: "Video 1", isNew: true},
-        {src: "2.mp4", title: "Video 2"},
+        {src: "video/1.mp4", title: "Video 1", isNew: true},
+        {src: "video/2.mp4", title: "Video 2"},
         {src: "video/3.mp4", title: "অস্থির ভিডিও "}
       ];
       const selectedVideoContainer = document.getElementById("selectedVideoContainer");
@@ -65,7 +65,7 @@
           videoTitle.textContent = video.title;
           videoTitle.classList.remove("hidden");
           videoLink.classList.remove("hidden");
-          videoLink.onclick = () => { navigator.clipboard.writeText(window.location.href + video.src); alert('Video link copied!'); };
+          videoLink.onclick = () => { navigator.clipboard.writeText(`https://masti-bangla.vercel.app/${video.src}`); alert('Video link copied!'); };
           selectedVideoContainer.classList.remove("hidden");
           closeButton.classList.remove("hidden");
           selectedVideoElement.play();
