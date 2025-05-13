@@ -37,8 +37,8 @@
     document.addEventListener("DOMContentLoaded", function () {
       const videoGallery = document.getElementById("videoGallery");
       const videoPaths = [
-        {src: "video/1.mp4", title: "Video 1", isNew: true},
-        {src: "video/2.mp4", title: "Video 2"},
+        {src: "1.mp4", title: "Video 1", isNew: true},
+        {src: "2.mp4", title: "Video 2"},
         {src: "video/3.mp4", title: "অস্থির ভিডিও "}
       ];
       const selectedVideoContainer = document.getElementById("selectedVideoContainer");
@@ -46,6 +46,18 @@
       const videoTitle = document.getElementById("videoTitle");
       const videoLink = document.getElementById("videoLink");
       const closeButton = document.getElementById("closeButton");
+
+      function playSelectedVideo(src, title) {
+        selectedVideoElement.src = src;
+        videoTitle.textContent = title;
+        videoTitle.classList.remove("hidden");
+        videoLink.classList.remove("hidden");
+        videoLink.onclick = () => { navigator.clipboard.writeText(`https://masti-bangla.vercel.app/${src}`); alert('Video link copied!'); };
+        selectedVideoContainer.classList.remove("hidden");
+        closeButton.classList.remove("hidden");
+        selectedVideoElement.play();
+        videoGallery.classList.add("hidden");
+      }
 
       videoPaths.forEach((video) => {
         const videoContainer = document.createElement("div");
@@ -60,17 +72,7 @@
         playButton.className = "absolute text-white text-3xl font-bold bg-black bg-opacity-50 p-2 rounded-full";
         playButton.innerHTML = "&#9658;";
 
-        playButton.addEventListener("click", function () {
-          selectedVideoElement.src = video.src;
-          videoTitle.textContent = video.title;
-          videoTitle.classList.remove("hidden");
-          videoLink.classList.remove("hidden");
-          videoLink.onclick = () => { navigator.clipboard.writeText(`https://masti-bangla.vercel.app/${video.src}`); alert('Video link copied!'); };
-          selectedVideoContainer.classList.remove("hidden");
-          closeButton.classList.remove("hidden");
-          selectedVideoElement.play();
-          videoGallery.classList.add("hidden");
-        });
+        playButton.addEventListener("click", function () { playSelectedVideo(video.src, video.title); });
 
         videoContainer.appendChild(videoElement);
         videoContainer.appendChild(playButton);
@@ -85,6 +87,13 @@
         selectedVideoElement.src = "";
         videoGallery.classList.remove("hidden");
       });
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const videoParam = urlParams.get("video");
+      if (videoParam) {
+        const video = videoPaths.find(v => v.src === videoParam);
+        if (video) playSelectedVideo(video.src, video.title);
+      }
     });
   </script>
 </body>
