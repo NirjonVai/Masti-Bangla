@@ -15,78 +15,48 @@
   <header class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-2 shadow-md">
     <h1 class="text-2xl font-bold text-white text-center" style="font-family: 'Audiowide', cursive;">Masti Bangla</h1>
   </header>
+  
+  <div class="flex justify-center mt-4">
+      <script type="text/javascript">
+        atOptions = {
+          'key': 'dc4a6dc69b3ed001b367bfa715857e86',
+          'format': 'iframe',
+          'height': 50,
+          'width': 320,
+          'params': {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/dc4a6dc69b3ed001b367bfa715857e86/invoke.js"></script>
+    </div>
 
-  <main class="p-2 flex-grow">
-    <div id="videoGallery" class="grid grid-cols-2 gap-6 bg-gradient-to-r from-pink-900 via-purple-900 to-blue-900 p-2 rounded-sm"></div>
+  <main class="p-2 mt-2 flex-grow">
+     <h2 class="text-md font-bold mb-4"><i class="fa-solid fa-circle-play mr-2 text-yellow-400"></i>Top Trending Viral Video</h2>
+    <div id="videoGallery" class="grid grid-cols-2 gap-6 bg-gradient-to-r from-purple-800 to-blue-900 p-2 rounded-md border border-yellow-700"></div>
 
     <div id="selectedVideoContainer" class="hidden bg-gray-900 rounded-sm shadow-md relative flex flex-col justify-center items-center h-64 w-full">
       <video id="playVideo" class="w-full h-3/4 object-contain mt-8 border border-gray-600" controls></video>
       <div class="bg-gray-800 bg-opacity-50 w-full flex items-center justify-between px-2 py-1 h-full">
-      <div id="videoTitle" class="text-white font-bold rounded hidden"></div>
-      <div id="videoLink" class="text-blue-400 underline hidden cursor-pointer"><i class="fa-solid fa-link"></i></div>
+        <div id="videoTitle" class="text-white font-bold rounded hidden text-xs"></div>
+        <div id="videoLink" class="text-blue-400 underline hidden cursor-pointer"><i class="fa-solid fa-link"></i></div>
       </div>
       <button id="closeButton" class="absolute top-0.5 right-0 text-white text-2xl bg-black bg-opacity-50 p-1 w-7 h-7 rounded-full hidden flex justify-center items-center">&times;</button>
     </div>
+    
+    <div class="flex flex-col items-center mt-6 mb-5 bg-gradient-to-r from-blue-700 to-purple-700 p-4 rounded-md">
+    <i class="fab fa-telegram text-6xl mb-4"></i>
+    <p class="text-center mb-2">নতুন নতুন ভিডিও পেতে টেলিগ্রাম চ্যানেলে যুক্ত হয়ে আমাদের সাথেই থাকুন।</p>
+    <p class="text-white text-lg">Join our official Telegram channel</p>
+    <a href="https://t.me/your_official_channel" class="mt-4 px-4 py-2 bg-blue-600 rounded-full text-white hover:bg-blue-700 transition font-bold">Join Now</a>
+  </div>
   </main>
+  
+  <script type='text/javascript' src='//pl22142576.profitableratecpm.com/46/59/4c/46594c43bfb3048f34c90a492ed6b1bb.js'></script>
 
   <footer class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-4 text-center text-gray-200">
     <p>&copy; 2025 Masti Bangla. All rights reserved.</p>
   </footer>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const videoGallery = document.getElementById("videoGallery");
-      const videoPaths = [
-        {src: "1.mp4", title: "Video 1", isNew: true},
-        {src: "2.mp4", title: "Video 2"},
-        {src: "3.mp4", title: "অস্থির ভিডিও "}
-      ];
-      const selectedVideoContainer = document.getElementById("selectedVideoContainer");
-      const selectedVideoElement = document.getElementById("playVideo");
-      const videoTitle = document.getElementById("videoTitle");
-      const videoLink = document.getElementById("videoLink");
-      const closeButton = document.getElementById("closeButton");
-
-      videoPaths.forEach((video) => {
-        const videoContainer = document.createElement("div");
-        videoContainer.className = "relative bg-gray-900 p-1 rounded-sm shadow-md flex justify-center items-center h-20 w-full";
-
-        const videoElement = document.createElement("video");
-        videoElement.src = video.src;
-        videoElement.controls = false;
-        videoElement.className = "w-full h-full object-contain rounded-md";
-
-        const playButton = document.createElement("button");
-        playButton.className = "absolute text-white text-3xl font-bold bg-black bg-opacity-50 p-2 rounded-full";
-        playButton.innerHTML = "&#9658;";
-
-        playButton.addEventListener("click", function () {
-          selectedVideoElement.src = video.src;
-          videoTitle.textContent = video.title;
-          videoTitle.classList.remove("hidden");
-          videoLink.classList.remove("hidden");
-          videoLink.onclick = () => { navigator.clipboard.writeText(window.location.href + video.src); alert('Video link copied!'); };
-          selectedVideoContainer.classList.remove("hidden");
-          closeButton.classList.remove("hidden");
-          selectedVideoElement.play();
-          videoGallery.classList.add("hidden");
-        });
-
-        videoContainer.appendChild(videoElement);
-        videoContainer.appendChild(playButton);
-        videoGallery.appendChild(videoContainer);
-      });
-
-      closeButton.addEventListener("click", function () {
-        selectedVideoContainer.classList.add("hidden");
-        videoTitle.classList.add("hidden");
-        videoLink.classList.add("hidden");
-        selectedVideoElement.pause();
-        selectedVideoElement.src = "";
-        videoGallery.classList.remove("hidden");
-      });
-    });
-  </script>
+  <script src="masti.js"></script>
 </body>
 
 </html>
