@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
       const videoGallery = document.getElementById("videoGallery");
       const videoPaths = [
-      { src: "1.mp4", title: "রিয়ার কালেকশন 🥵", isNew: true },
-
-      { src: "2.mp4", title: "মধু 💋💋 },
-      { src: "3.mp4", title: "অস্থির ভিডিও 💗💋" },
-      { src: "4.mp4", title: " GF কে কোপাছে 💗💋" }
+        { src: "1.mp4", title: "রিয়ার কালেকশন ", isNew: true },
+        { src: "2.mp4", title: "ওই কিরে মধু " },
+        { src: "3.mp4", title: "অস্থির ভিডিও " },
+        { src: "4.mp4", title: "GF কে খেলছে" }
       ];
       const selectedVideoContainer = document.getElementById("selectedVideoContainer");
       const selectedVideoElement = document.getElementById("playVideo");
