@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
       { src: "1.mp4", title: "রিয়ার কালেকশন 🥵", isNew: true },
 
       { src: "2.mp4", title: "মধু 💋💋 },
-      { src: "3.mp4", title: "অস্থির ভিডিও 💗💋" }
+      { src: "3.mp4", title: "অস্থির ভিডিও 💗💋" },
       { src: "4.mp4", title: " GF কে কোপাছে 💗💋" }
       ];
       const selectedVideoContainer = document.getElementById("selectedVideoContainer");
